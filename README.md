@@ -70,7 +70,7 @@ Response status ```200 OK```:
     "apartment": "string",
     "block": "string",
     "createdAt": "2023-03-12T16:47:06Z",
-    "updatedAt": null
+    "updatedAt": "2023-03-13T15:02:43Z"
   }
 ]
 ```
@@ -135,6 +135,20 @@ Fail response status ```404 Not Found```:
 
 ```
 Parking spot not found.
+```
+
+Fail response status ```409 Conflict```:
+
+```
+Conflict: Licence plate car is already in use.
+```
+
+```
+Conflict: Parking spot number is already in use.
+```
+
+```
+Conflict: Parking spot is already registered for this apartment.
 ```
 
 ### DELETE /parking-spot/{id}

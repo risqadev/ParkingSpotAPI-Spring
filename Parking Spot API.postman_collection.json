@@ -1,0 +1,1175 @@
+{
+	"info": {
+		"_postman_id": "08917f18-fdab-42d4-9939-6bc7e065d472",
+		"name": "Parking Spot API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20444110"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/parking-spot",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"parking-spot"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201 created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:06:27 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"e5d2ab67-ae29-4331-9428-bea1560ad562\",\n    \"parkingSpotNumber\": \"314\",\n    \"licensePlateCar\": \"ABC2\",\n    \"brandCar\": \"hard drive\",\n    \"modelCar\": \"monitor\",\n    \"colorCar\": \"silver\",\n    \"createdAt\": \"2023-03-12T21:06:27Z\",\n    \"updatedAt\": null,\n    \"responsibleName\": \"Ida Gleichner\",\n    \"apartment\": \"55\",\n    \"block\": \"e-tailers\"\n}"
+				},
+				{
+					"name": "409 conflict spot number",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"314\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:07:30 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Conflict: Parking spot number is already in use."
+				},
+				{
+					"name": "409 conflict licence plate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC421\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:08:52 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Conflict: Licence plate car is already in use."
+				},
+				{
+					"name": "409 conflict apartment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"465\",\n    \"block\": \"web-readiness\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:09:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Conflict: Parking spot is already registered for this apartment."
+				}
+			]
+		},
+		{
+			"name": "list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/parking-spot?page=0&size=3&sort=createdAt,desc",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"parking-spot"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "3"
+						},
+						{
+							"key": "sort",
+							"value": "createdAt,desc"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 get all",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "createdAt,desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "pageNumber",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						},
+						{
+							"key": "totalPages",
+							"value": "1"
+						},
+						{
+							"key": "totalElements",
+							"value": "8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:10:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"13694894-aa4d-44cf-a1d0-a557524760e0\",\n        \"parkingSpotNumber\": \"652\",\n        \"licensePlateCar\": \"ABC969\",\n        \"brandCar\": \"protocol\",\n        \"modelCar\": \"port\",\n        \"colorCar\": \"red\",\n        \"createdAt\": \"2023-03-12T21:09:26Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Karla King\",\n        \"apartment\": \"465\",\n        \"block\": \"web-readiness\"\n    },\n    {\n        \"id\": \"23b65e0d-c12b-4fcf-9f1e-a055b9d546d4\",\n        \"parkingSpotNumber\": \"A220\",\n        \"licensePlateCar\": \"218\",\n        \"brandCar\": \"firewall\",\n        \"modelCar\": \"interface\",\n        \"colorCar\": \"tan\",\n        \"createdAt\": \"2023-03-12T04:43:56Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Clifford Sporer\",\n        \"apartment\": \"389\",\n        \"block\": \"networks\"\n    },\n    {\n        \"id\": \"38092130-7e96-47b2-9bb0-b8d3bdbc1358\",\n        \"parkingSpotNumber\": \"342\",\n        \"licensePlateCar\": \"ABC421\",\n        \"brandCar\": \"alarm\",\n        \"modelCar\": \"protocol\",\n        \"colorCar\": \"teal\",\n        \"createdAt\": \"2023-03-12T21:08:34Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Edmund Feil V\",\n        \"apartment\": \"105\",\n        \"block\": \"mindshare\"\n    },\n    {\n        \"id\": \"7613135b-cc43-4277-af65-1f6598742936\",\n        \"parkingSpotNumber\": \"A115\",\n        \"licensePlateCar\": \"443\",\n        \"brandCar\": \"monitor\",\n        \"modelCar\": \"capacitor\",\n        \"colorCar\": \"fuchsia\",\n        \"createdAt\": \"2023-03-12T04:43:55Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Lena McDermott\",\n        \"apartment\": \"583\",\n        \"block\": \"metrics\"\n    },\n    {\n        \"id\": \"921545b6-3201-4b1d-9f32-326773391fc9\",\n        \"parkingSpotNumber\": \"A539\",\n        \"licensePlateCar\": \"262\",\n        \"brandCar\": \"microchip\",\n        \"modelCar\": \"transmitter\",\n        \"colorCar\": \"silver\",\n        \"createdAt\": \"2023-03-12T16:47:06Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Brendan Roberts\",\n        \"apartment\": \"660\",\n        \"block\": \"infrastructures\"\n    },\n    {\n        \"id\": \"d743669a-1ed9-434a-81a3-ee52de7af4c0\",\n        \"parkingSpotNumber\": \"A841\",\n        \"licensePlateCar\": \"239\",\n        \"brandCar\": \"application\",\n        \"modelCar\": \"matrix\",\n        \"colorCar\": \"purple\",\n        \"createdAt\": \"2023-03-12T04:43:57Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Carlos Kunde\",\n        \"apartment\": \"18\",\n        \"block\": \"systems\"\n    },\n    {\n        \"id\": \"e5d2ab67-ae29-4331-9428-bea1560ad562\",\n        \"parkingSpotNumber\": \"314\",\n        \"licensePlateCar\": \"ABC2\",\n        \"brandCar\": \"hard drive\",\n        \"modelCar\": \"monitor\",\n        \"colorCar\": \"silver\",\n        \"createdAt\": \"2023-03-12T21:06:27Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Ida Gleichner\",\n        \"apartment\": \"55\",\n        \"block\": \"e-tailers\"\n    },\n    {\n        \"id\": \"f8d7fdfb-8ba4-490c-b5a3-68d18e966300\",\n        \"parkingSpotNumber\": \"B869\",\n        \"licensePlateCar\": \"829\",\n        \"brandCar\": \"capacitor\",\n        \"modelCar\": \"application\",\n        \"colorCar\": \"tan\",\n        \"createdAt\": \"2023-03-12T04:43:50Z\",\n        \"updatedAt\": \"2023-03-12T05:03:33Z\",\n        \"responsibleName\": \"Mr. Earl Stokes\",\n        \"apartment\": \"199\",\n        \"block\": \"eyeballs\"\n    }\n]"
+				},
+				{
+					"name": "200 paginated",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot?page=0&size=3&sort=createdAt,desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt,desc"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "pageNumber",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "3"
+						},
+						{
+							"key": "totalPages",
+							"value": "3"
+						},
+						{
+							"key": "totalElements",
+							"value": "8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:12:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"13694894-aa4d-44cf-a1d0-a557524760e0\",\n        \"parkingSpotNumber\": \"652\",\n        \"licensePlateCar\": \"ABC969\",\n        \"brandCar\": \"protocol\",\n        \"modelCar\": \"port\",\n        \"colorCar\": \"red\",\n        \"createdAt\": \"2023-03-12T21:09:26Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Karla King\",\n        \"apartment\": \"465\",\n        \"block\": \"web-readiness\"\n    },\n    {\n        \"id\": \"38092130-7e96-47b2-9bb0-b8d3bdbc1358\",\n        \"parkingSpotNumber\": \"342\",\n        \"licensePlateCar\": \"ABC421\",\n        \"brandCar\": \"alarm\",\n        \"modelCar\": \"protocol\",\n        \"colorCar\": \"teal\",\n        \"createdAt\": \"2023-03-12T21:08:34Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Edmund Feil V\",\n        \"apartment\": \"105\",\n        \"block\": \"mindshare\"\n    },\n    {\n        \"id\": \"e5d2ab67-ae29-4331-9428-bea1560ad562\",\n        \"parkingSpotNumber\": \"314\",\n        \"licensePlateCar\": \"ABC2\",\n        \"brandCar\": \"hard drive\",\n        \"modelCar\": \"monitor\",\n        \"colorCar\": \"silver\",\n        \"createdAt\": \"2023-03-12T21:06:27Z\",\n        \"updatedAt\": null,\n        \"responsibleName\": \"Ida Gleichner\",\n        \"apartment\": \"55\",\n        \"block\": \"e-tailers\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "find by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/parking-spot/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"parking-spot",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "f8d7fdfb-8ba4-490c-b5a3-68d18e966301"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f8d7fdfb-8ba4-490c-b5a3-68d18e966300"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:14:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"f8d7fdfb-8ba4-490c-b5a3-68d18e966300\",\n    \"parkingSpotNumber\": \"B869\",\n    \"licensePlateCar\": \"829\",\n    \"brandCar\": \"capacitor\",\n    \"modelCar\": \"application\",\n    \"colorCar\": \"tan\",\n    \"createdAt\": \"2023-03-12T04:43:50Z\",\n    \"updatedAt\": \"2023-03-12T05:03:33Z\",\n    \"responsibleName\": \"Mr. Earl Stokes\",\n    \"apartment\": \"199\",\n    \"block\": \"eyeballs\"\n}"
+				},
+				{
+					"name": "400 Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f8d7fdfb-8ba4-490c-b5a3-68d18e966301"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:15:10 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Parking spot not found."
+				}
+			]
+		},
+		{
+			"name": "update by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/parking-spot/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"parking-spot",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "13694894-aa4d-44cf-a1d0-a557524760e0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204 No Content",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "13694894-aa4d-44cf-a1d0-a557524760e0"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:17:21 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "404 Not Found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "13694894-aa4d-44cf-a1d0-a557524760e1"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:17:59 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Parking spot not found."
+				},
+				{
+					"name": "409 conflict spot number",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"314\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "13694894-aa4d-44cf-a1d0-a557524760e0"
+								}
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:21:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Conflict: Parking spot number is already in use."
+				},
+				{
+					"name": "409 conflict licence plate",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC2\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"{{$randomInt}}\",\n    \"block\": \"{{$randomBsNoun}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "13694894-aa4d-44cf-a1d0-a557524760e0"
+								}
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:22:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Conflict: Licence plate car is already in use."
+				},
+				{
+					"name": "409 conflict apartment",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parkingSpotNumber\": \"{{$randomInt}}\",\n    \"licensePlateCar\": \"ABC{{$randomInt}}\",\n    \"brandCar\": \"{{$randomNoun}}\",\n    \"modelCar\": \"{{$randomNoun}}\",\n    \"colorCar\": \"{{$randomColor}}\",\n    \"responsibleName\": \"{{$randomFullName}}\",\n    \"apartment\": \"55\",\n    \"block\": \"e-tailers\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "13694894-aa4d-44cf-a1d0-a557524760e0"
+								}
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:22:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Conflict: Parking spot is already registered for this apartment."
+				}
+			]
+		},
+		{
+			"name": "delete by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/parking-spot/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"parking-spot",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "f8d7fdfb-8ba4-490c-b5a3-68d18e966300"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204 No Content",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f8d7fdfb-8ba4-490c-b5a3-68d18e966300"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:16:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "404 Not Found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/parking-spot/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"parking-spot",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f8d7fdfb-8ba4-490c-b5a3-68d18e966301"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Mar 2023 21:14:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Parking spot not found."
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8080"
+		}
+	]
+}

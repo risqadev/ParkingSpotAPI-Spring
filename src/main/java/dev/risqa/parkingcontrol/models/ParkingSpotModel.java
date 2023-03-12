@@ -24,7 +24,9 @@ public class ParkingSpotModel implements Serializable {
     @Column(nullable = false, length = 70)
     private String colorCar;
     @Column(nullable = false)
-    private LocalDateTime registrationDate;
+    private LocalDateTime createdAt;
+    @Column(nullable = true)
+    private LocalDateTime updatedAt;
     @Column(nullable = false, length = 130)
     private String responsibleName;
     @Column(nullable = false, length = 30)
@@ -80,12 +82,20 @@ public class ParkingSpotModel implements Serializable {
         this.colorCar = colorCar;
     }
 
-    public LocalDateTime getRegistrationDate() {
-        return registrationDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setRegistrationDate(LocalDateTime registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getResponsibleName() {

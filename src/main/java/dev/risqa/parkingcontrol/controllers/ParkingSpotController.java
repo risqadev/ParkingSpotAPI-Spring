@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -38,9 +41,45 @@ public class ParkingSpotController {
 
         var parkingSpotModel = new ParkingSpotModel();
         BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
-        parkingSpotModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
+        parkingSpotModel.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
         return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotService.save(parkingSpotModel));
     }
 
+    @GetMapping
+    public ResponseEntity<List<ParkingSpotModel>> getAllParkingSpots() {
+        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll());
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getParkingSpotById(@PathVariable(value = "id") UUID id) {
+        Optional<ParkingSpotModel> optionalParkingSpot = parkingSpotService.findById(id);
+        if(optionalParkingSpot.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking spot not found.");
+        }
+        return ResponseEntity.ok(optionalParkingSpot.get());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteParkingSpotById(@PathVariable(value = "id") UUID id) {
+        Optional<ParkingSpotModel> parkingSpotOptional = parkingSpotService.findById(id);
+        if (parkingSpotOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking spot not found.");
+        }
+        parkingSpotService.deleteById(parkingSpotOptional.get().getId());
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> putParkingSpotById(@PathVariable(value = "id") UUID id,
+                                                     @RequestBody @Valid ParkingSpotDto parkingSpotDto) {
+        Optional<ParkingSpotModel> parkingSpotOptional = parkingSpotService.findById(id);
+        if (parkingSpotOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking spot not found.");
+        }
+        ParkingSpotModel parkingSpotModel = parkingSpotOptional.get();
+        BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
+        parkingSpotModel.setUpdatedAt(LocalDateTime.now(ZoneId.of("UTC")));
+        parkingSpotService.save(parkingSpotModel);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

@@ -4,6 +4,11 @@ import dev.risqa.parkingcontrol.dtos.ParkingSpotDto;
 import dev.risqa.parkingcontrol.models.ParkingSpotModel;
 import dev.risqa.parkingcontrol.services.ParkingSpotService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,9 +50,17 @@ public class ParkingSpotController {
         return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotService.save(parkingSpotModel));
     }
 
+    /* TODO: inserir filtros por query params */
     @GetMapping
-    public ResponseEntity<List<ParkingSpotModel>> getAllParkingSpots() {
-        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll());
+    public ResponseEntity<List<ParkingSpotModel>> getAllParkingSpots(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        Page<ParkingSpotModel> pagedParkingSpot = parkingSpotService.findAll(pageable);
+        List<ParkingSpotModel> content = pagedParkingSpot.getContent();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("pageNumber", String.valueOf(pagedParkingSpot.getPageable().getPageNumber()));
+        responseHeaders.add("pageSize", String.valueOf(pagedParkingSpot.getPageable().getPageSize()));
+        responseHeaders.add("totalPages", String.valueOf(pagedParkingSpot.getTotalPages()));
+        responseHeaders.add("totalElements", String.valueOf(pagedParkingSpot.getTotalElements()));
+        return ResponseEntity.status(HttpStatus.OK).headers(responseHeaders).body(content);
     }
 
     @GetMapping("/{id}")
